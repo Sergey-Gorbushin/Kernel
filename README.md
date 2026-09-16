@@ -1,25 +1,33 @@
-# CODING AGENTS: READ THIS FIRST
+# Kernel
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Design system built with React and [Storybook](https://storybook.js.org/), for use by other agents, developers, and designers.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## Getting started
 
-## What you should do — IMPORTANT
+```bash
+npm install
+npm run storybook
+```
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+Storybook starts at `http://localhost:6006`.
 
-**Read `project/Storybook.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+To build a static, deployable version:
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+```bash
+npm run build-storybook
+```
 
-## About the design files
+## Structure
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+```
+src/
+  tokens/           design tokens (typography, colors, ...)
+  components/
+    Typography/      type-scale specimens
+    Buttons/          (placeholder — not yet filled in)
+    Inputs/           (placeholder — not yet filled in)
+    shared/           shared building blocks (page chrome, empty state)
+.storybook/          Storybook configuration
+```
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
-
-## Bundle contents
-
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Storybook на GitHub` project files (HTML prototypes, assets, components)
+Sections are organized to mirror the Figma design system: Typography, Buttons, Inputs. New sections get filled in as their Figma frames are provided — until then they show a "not yet filled in" placeholder in Storybook.

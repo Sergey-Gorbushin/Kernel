@@ -1,0 +1,4 @@
+body {
+  margin: 0;
+  background: oklch(0.98 0.002 90);
+}
