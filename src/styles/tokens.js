@@ -31,6 +31,13 @@ export const colors = {
   borderInputFocus: '#40A9FF', // focusBlue
   ringInputFocus: 'rgba(24, 144, 255, 0.2)', // focusBlueStrong @ 20%
   borderInputError: '#F5222D', // dustRed6
+
+  // Introduced with Button/Checkbox/Radio/Pagination (Claude Design handoff,
+  // "For_claude.fig" Buttons + CheckBox & Radio + Pagination frames).
+  surfaceButtonFill: '#262626', // grey7 — Button's fill; no accent palette defined yet
+  textOnDark: '#FFFFFF', // white — Button/active-pagination-page text over surfaceButtonFill
+  surfaceSelected: '#1890FF', // focusBlueStrong alias — Checkbox/Radio checked fill+ring
+  surfaceHover: '#F0F0F0', // Pagination page-button hover background
 };
 
 export const monoFontFamily = "'SF Mono', Menlo, monospace";
