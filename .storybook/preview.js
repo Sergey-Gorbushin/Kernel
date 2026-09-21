@@ -10,7 +10,7 @@ const preview = {
     },
     options: {
       storySort: {
-        order: ['Design System', ['Typography', 'Buttons', 'Inputs']],
+        order: ['Design System', ['Typography', 'Buttons', 'Inputs', 'Textarea', 'Select']],
       },
     },
   },
