@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
-import { colors } from '../../styles/tokens';
+import { colors, palette } from '../../styles/tokens';
 import { FONT_FAMILY } from '../../tokens/typography';
 
 // Ported from the "For_claude.fig" Buttons page (Primary Buttons V2 component
@@ -16,31 +16,78 @@ const BUTTON_SIZES = {
 };
 
 export const BUTTON_SIZE_NAMES = ['sm', 'md', 'default', 'lg', 'xl'];
+export const BUTTON_VARIANT_NAMES = ['neutral', 'secondary', 'accent'];
+export const BUTTON_ACCENT_COLOR_NAMES = ['blue', 'cryola', 'green', 'amethyst'];
+
+const SPIN_KEYFRAMES_ID = 'kernel-button-spin-keyframes';
+function ensureSpinKeyframes() {
+  if (typeof document === 'undefined' || document.getElementById(SPIN_KEYFRAMES_ID)) return;
+  const style = document.createElement('style');
+  style.id = SPIN_KEYFRAMES_ID;
+  style.textContent = '@keyframes kernel-button-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }';
+  document.head.appendChild(style);
+}
+
+function variantColors(variant, color, hovered) {
+  if (variant === 'secondary') {
+    return {
+      fill: hovered ? colors.surfaceButtonSecondaryFillHover : colors.surfaceButtonSecondaryFill,
+      text: colors.surfaceButtonSecondaryText,
+    };
+  }
+  if (variant === 'accent') {
+    const ramp = palette[color] || palette.blue;
+    return { fill: hovered ? ramp[4] : ramp[5], text: colors.textOnDark };
+  }
+  return {
+    fill: hovered ? colors.surfaceButtonFillHover : colors.surfaceButtonFill,
+    text: colors.textOnDark,
+  };
+}
 
 /**
- * Primary (filled) button — sizes only for now; color palette and other
- * button types (outline/link/dashed/ghost) and a hover/disabled visual spec
- * are not yet defined in the design system, so only the fill color
- * (`colors.surfaceButtonFill`) and text color (`colors.textOnDark`) are set.
- * Optional left/right icon slots default to the lucide "menu" glyph, standing
- * in for the source Figma file's own placeholder icon component.
+ * Primary/secondary/accent button. Optional left/right icon slots default to
+ * the lucide "menu" glyph, standing in for the source Figma file's own
+ * placeholder icon component.
  *
  * @example
- * <Button size="default" showLeftIcon>Button Title</Button>
+ * <Button size="default" variant="accent" color="blue" showLeftIcon>Button Title</Button>
  */
-export function Button({ size = 'default', showLeftIcon = false, showRightIcon = false, icon, children = 'Button Title', style, ...rest }) {
+export function Button({
+  size = 'default',
+  variant = 'neutral',
+  color = 'blue',
+  disabled = false,
+  loading = false,
+  showLeftIcon = false,
+  showRightIcon = false,
+  icon,
+  children = 'Button Title',
+  style,
+  onMouseEnter,
+  onMouseLeave,
+  ...rest
+}) {
   const s = BUTTON_SIZES[size] || BUTTON_SIZES.default;
+  const [hovered, setHovered] = useState(false);
+  if (loading) ensureSpinKeyframes();
+  const { fill, text } = variantColors(variant, color, hovered);
+
   return (
     <button
       type="button"
+      disabled={disabled}
+      onMouseEnter={(e) => { setHovered(true); onMouseEnter?.(e); }}
+      onMouseLeave={(e) => { setHovered(false); onMouseLeave?.(e); }}
       {...rest}
       style={{
+        position: 'relative',
         width: 'fit-content',
         height: s.height,
         minWidth: s.minWidth,
         overflow: 'hidden',
         borderRadius: s.radius,
-        backgroundColor: colors.surfaceButtonFill,
+        backgroundColor: fill,
         display: 'flex',
         flexDirection: 'row',
         gap: s.gap,
@@ -50,20 +97,51 @@ export function Button({ size = 'default', showLeftIcon = false, showRightIcon =
         flexWrap: 'nowrap',
         boxSizing: 'border-box',
         border: 'none',
-        cursor: 'pointer',
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        opacity: disabled ? 0.4 : 1,
+        pointerEvents: disabled || loading ? 'none' : 'auto',
+        color: text,
         ...style,
       }}
     >
+      {loading && (
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: s.icon / 2,
+            height: s.icon / 2,
+            borderRadius: '50%',
+            border: '2px solid currentColor',
+            borderTopColor: 'transparent',
+            animation: 'kernel-button-spin 0.7s linear infinite',
+          }}
+        />
+      )}
       {showLeftIcon && (
-        <span style={{ display: 'flex', flexShrink: 0, margin: `0 ${s.iconGap}px`, color: colors.textOnDark }}>
+        <span style={{ display: 'flex', flexShrink: 0, margin: `0 ${s.iconGap}px`, color: text, visibility: loading ? 'hidden' : 'visible' }}>
           {icon || <Menu size={s.icon} />}
         </span>
       )}
-      <span style={{ fontFamily: FONT_FAMILY, fontWeight: 400, fontSize: s.fontSize, lineHeight: `${s.lineHeight}px`, whiteSpace: 'nowrap', color: colors.textOnDark, margin: `0 ${s.textGap}px` }}>
+      <span
+        style={{
+          fontFamily: FONT_FAMILY,
+          fontWeight: 400,
+          fontSize: s.fontSize,
+          lineHeight: `${s.lineHeight}px`,
+          whiteSpace: 'nowrap',
+          color: text,
+          margin: `0 ${s.textGap}px`,
+          visibility: loading ? 'hidden' : 'visible',
+        }}
+      >
         {children}
       </span>
       {showRightIcon && (
-        <span style={{ display: 'flex', flexShrink: 0, margin: `0 ${s.iconGap}px`, color: colors.textOnDark }}>
+        <span style={{ display: 'flex', flexShrink: 0, margin: `0 ${s.iconGap}px`, color: text, visibility: loading ? 'hidden' : 'visible' }}>
           {icon || <Menu size={s.icon} />}
         </span>
       )}

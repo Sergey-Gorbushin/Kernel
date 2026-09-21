@@ -1,6 +1,6 @@
 import React from 'react';
 import { DesignSystemSectionPage } from '../shared/DesignSystemSectionPage';
-import { Button, BUTTON_SIZE_NAMES } from './Button';
+import { Button, BUTTON_SIZE_NAMES, BUTTON_ACCENT_COLOR_NAMES } from './Button';
 import { colors, monoFontFamily } from '../../styles/tokens';
 
 const SPECS = {
@@ -49,3 +49,33 @@ export const Icons = () => (
   </DesignSystemSectionPage>
 );
 Icons.parameters = { controls: { disable: true } };
+
+export const Variants = () => (
+  <DesignSystemSectionPage title="Кнопки">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <Button variant="neutral">Neutral</Button>
+        <Button variant="secondary">Secondary</Button>
+        {BUTTON_ACCENT_COLOR_NAMES.map((c) => (
+          <Button key={c} variant="accent" color={c}>{c}</Button>
+        ))}
+      </div>
+      <div style={{ fontFamily: monoFontFamily, fontSize: 11, color: colors.textFaint }}>
+        Hover any button to see the hover fill.
+      </div>
+    </div>
+  </DesignSystemSectionPage>
+);
+Variants.parameters = { controls: { disable: true } };
+
+export const States = () => (
+  <DesignSystemSectionPage title="Кнопки">
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      <Button>Default</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+      <Button variant="accent" loading>Loading</Button>
+    </div>
+  </DesignSystemSectionPage>
+);
+States.parameters = { controls: { disable: true } };

@@ -1,3 +1,15 @@
+// Five 10-step color ramps (0 lightest … 9 darkest, .5 is the base/reference
+// shade). Source: design handoff "Color palettes + Button variants/states".
+export const palette = {
+  grey: ['#FAFAFA', '#F6F6F6', '#F0F0F0', '#D9D9D9', '#BFBFBF', '#8C8C8C', '#595959', '#262626', '#141414', '#161616'],
+  blue: ['#EFF9FE', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
+  cryola: ['#FFF7F5', '#FFE8E1', '#FED1C3', '#FDB29B', '#FD8F6D', '#FC6C40', '#F63D04', '#D33403', '#B02B03', '#9C2602'],
+  green: ['#EBFCF4', '#DAF0E6', '#B6E3CE', '#84BFA3', '#6AA389', '#3E785D', '#33624D', '#2B4F3E', '#223C30', '#1A2922'],
+  amethyst: ['#EFE4FC', '#DEC9F8', '#CDAEF4', '#BB94F0', '#A87AEB', '#9460E6', '#754DB3', '#583B83', '#3B2956', '#21182D'],
+};
+
+export const ACCENT_COLOR_NAMES = ['blue', 'cryola', 'green', 'amethyst'];
+
 // Neutral / minimalist color tokens from the mockup (Storybook.dc.html).
 export const colors = {
   pageBg: 'oklch(0.98 0.002 90)',
@@ -34,10 +46,16 @@ export const colors = {
 
   // Introduced with Button/Checkbox/Radio/Pagination (Claude Design handoff,
   // "For_claude.fig" Buttons + CheckBox & Radio + Pagination frames).
-  surfaceButtonFill: '#262626', // grey7 — Button's fill; no accent palette defined yet
+  surfaceButtonFill: '#262626', // grey7
   textOnDark: '#FFFFFF', // white — Button/active-pagination-page text over surfaceButtonFill
   surfaceSelected: '#1890FF', // focusBlueStrong alias — Checkbox/Radio checked fill+ring
   surfaceHover: '#F0F0F0', // Pagination page-button hover background
+
+  // Button variants/states (Color palettes + Button variants/states handoff).
+  surfaceButtonFillHover: palette.grey[6],
+  surfaceButtonSecondaryFill: palette.grey[2],
+  surfaceButtonSecondaryFillHover: palette.grey[1],
+  surfaceButtonSecondaryText: palette.grey[6],
 };
 
 export const monoFontFamily = "'SF Mono', Menlo, monospace";
