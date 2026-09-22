@@ -32,8 +32,9 @@ src/
     Dropdown/         generic menu — attaches to any trigger (button, link, ...), not just Select
     CheckboxRadio/    checkbox + radio controls — 2 sizes, checked/indeterminate/disabled
     Pagination/       page controls — sliding-window ellipsis algorithm, any page/totalPages
+    Modal/            modal template — title, Input field, footer actions (Button)
     shared/           shared building blocks (page chrome, empty state, icons)
 .storybook/          Storybook configuration
 ```
 
-Sections are organized to mirror the Figma design system: Typography, Buttons, Inputs, Textarea, Select, Dropdown, Checkbox & Radio, Pagination. Inputs/Textarea/Select were built from the "For_claude.fig" Input-Example frame plus direct instruction for anything beyond it (label, clear, password, suffix, disabled, Textarea, Select). Buttons, Dropdown, Checkbox/Radio and Pagination were ported from their respective named frames in the same file — see each component's JSDoc for what's sourced vs. inferred.
+Sections are organized to mirror the Figma design system: Typography, Buttons, Inputs, Textarea, Select, Dropdown, Checkbox & Radio, Pagination, Modal. Inputs/Textarea/Select were built from the "For_claude.fig" Input-Example frame plus direct instruction for anything beyond it (label, clear, password, suffix, disabled, Textarea, Select). Buttons, Dropdown, Checkbox/Radio and Pagination were ported from their respective named frames in the same file — see each component's JSDoc for what's sourced vs. inferred. Modal is composed only of the existing Button and Input components, per the "Modal Template" frame in the same file.
