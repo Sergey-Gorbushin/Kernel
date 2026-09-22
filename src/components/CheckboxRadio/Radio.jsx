@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from '../../styles/tokens';
+import { colors, palette } from '../../styles/tokens';
 
 const SIZES = { md: { box: 16, dot: 8 }, lg: { box: 20, dot: 10 } };
 
@@ -35,7 +35,7 @@ export function Radio({ size = 'lg', checked = false, disabled = false, onChange
         borderRadius: '50%',
         cursor: disabled ? 'default' : 'pointer',
         background: disabled ? colors.pageBg : colors.white,
-        boxShadow: checked && !disabled ? `inset 0 0 0 1px ${colors.surfaceSelected}` : `inset 0 0 0 1px ${colors.border}`,
+        boxShadow: checked && !disabled ? `inset 0 0 0 1px ${colors.surfaceSelected}` : `inset 0 0 0 1px ${palette.grey[3]}`,
         ...style,
       }}
       {...rest}

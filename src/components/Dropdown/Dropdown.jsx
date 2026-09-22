@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import { colors } from '../../styles/tokens';
+import { colors, palette } from '../../styles/tokens';
 import { FONT_FAMILY } from '../../tokens/typography';
 import { shadows } from '../../tokens/elevation';
 import { Checkbox } from '../CheckboxRadio/Checkbox';
@@ -9,7 +9,7 @@ import { Radio } from '../CheckboxRadio/Radio';
 const textStyle = (size, line, color) => ({ fontFamily: FONT_FAMILY, fontWeight: 400, fontSize: size, lineHeight: `${line}px`, color });
 
 function Item({ item }) {
-  if (item.divider) return <div style={{ height: 1, background: colors.borderFaint, margin: '4px 0' }} />;
+  if (item.divider) return <div style={{ height: 1, background: palette.grey[2], margin: '4px 0', marginTop: 0, marginBottom: 0 }} />;
   const disabled = !!item.disabled;
   return (
     <div
