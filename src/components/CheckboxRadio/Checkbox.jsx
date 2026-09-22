@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from '../../styles/tokens';
+import { colors, palette } from '../../styles/tokens';
 
 const SIZES = {
   md: { box: 16, radius: 2, icon: { w: 9.624, h: 7.622, x: 3.188, y: 4.618, d: 'M 3.417 7.604 L 3.4 7.622 L 0 4.222 L 1.433 2.789 L 3.418 4.774 L 8.192 0 L 9.624 1.433 L 3.435 7.622 L 3.417 7.604 Z' }, dash: { w: 8.8, h: 1.84, x: 3.6, y: 7.08 } },
@@ -59,7 +59,7 @@ export function Checkbox({ size = 'lg', checked = false, indeterminate = false, 
         borderRadius: s.radius,
         cursor: disabled ? 'default' : 'pointer',
         background: filled ? colors.surfaceSelected : disabled ? colors.pageBg : colors.white,
-        boxShadow: filled ? 'none' : `inset 0 0 0 1px ${colors.border}`,
+        boxShadow: filled ? 'none' : `inset 0 0 0 1px ${palette.grey[3]}`,
         ...style,
       }}
       {...rest}
