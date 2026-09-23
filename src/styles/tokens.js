@@ -66,10 +66,14 @@ export const colors = {
   // re-themes them without props.
   textTabActive: 'var(--color-accent, #262626)',
   borderTabActive: 'var(--color-accent, #262626)',
+
+  // Accent Button with no explicit `color` — follows the product accent too.
+  surfaceButtonAccent: 'var(--color-accent, #262626)',
+  surfaceButtonAccentHover: 'var(--color-accent-hover, #595959)',
 };
 
 // Product accent — base .5 shade of the product's palette; neutral (grey.7)
-// is the default. Used by tabs (and later accent buttons) only; other
+// is the default. Used by tabs and accent buttons only; other
 // components keep their fixed colors. Switched per product with
 // data-theme="neutral" | "green" | "cryola" | "blue" | "amethyst" on <html> or
 // any wrapper; the matching CSS rules live in global.css (keep the two in sync).
