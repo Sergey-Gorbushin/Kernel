@@ -33,8 +33,9 @@ src/
     CheckboxRadio/    checkbox + radio controls — 2 sizes, checked/indeterminate/disabled
     Pagination/       page controls — sliding-window ellipsis algorithm, any page/totalPages
     Modal/            modal template — title, Input field, footer actions (Button)
+    TabBar/           tabs with optional counter, sliding active indicator, product-accent themes
     shared/           shared building blocks (page chrome, empty state, icons)
 .storybook/          Storybook configuration
 ```
 
-Sections are organized to mirror the Figma design system: Typography, Buttons, Inputs, Textarea, Select, Dropdown, Checkbox & Radio, Pagination, Modal. Inputs/Textarea/Select were built from the "For_claude.fig" Input-Example frame plus direct instruction for anything beyond it (label, clear, password, suffix, disabled, Textarea, Select). Buttons, Dropdown, Checkbox/Radio and Pagination were ported from their respective named frames in the same file — see each component's JSDoc for what's sourced vs. inferred. Modal is composed only of the existing Button and Input components, per the "Modal Template" frame in the same file.
+Sections are organized to mirror the Figma design system: Typography, Buttons, Inputs, Textarea, Select, Dropdown, Checkbox & Radio, Pagination, Modal, Tab bar. Inputs/Textarea/Select were built from the "For_claude.fig" Input-Example frame plus direct instruction for anything beyond it (label, clear, password, suffix, disabled, Textarea, Select). Buttons, Dropdown, Checkbox/Radio and Pagination were ported from their respective named frames in the same file — see each component's JSDoc for what's sourced vs. inferred. Modal is composed only of the existing Button and Input components, per the "Modal Template" frame in the same file. Tab bar was ported from the "Tab-Bar" frame (`Tab Items`, State=Active/Default/Hover); its active color follows the product accent — set `data-theme="neutral" | "green" | "cryola" | "blue" | "amethyst"` on `<html>` or any wrapper (neutral by default, see `accentThemes` in `src/styles/tokens.js`).

@@ -2,3 +2,11 @@ body {
   margin: 0;
   background: oklch(0.98 0.002 90);
 }
+
+/* Product accent (see accentThemes in tokens.js). Neutral is the default. */
+:root,
+[data-theme='neutral'] { --color-accent: #262626; --color-accent-hover: #595959; }
+[data-theme='green'] { --color-accent: #3E785D; --color-accent-hover: #6AA389; }
+[data-theme='cryola'] { --color-accent: #FC6C40; --color-accent-hover: #FD8F6D; }
+[data-theme='blue'] { --color-accent: #1890FF; --color-accent-hover: #40A9FF; }
+[data-theme='amethyst'] { --color-accent: #9460E6; --color-accent-hover: #A87AEB; }
