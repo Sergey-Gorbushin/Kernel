@@ -56,7 +56,35 @@ export const colors = {
   surfaceButtonSecondaryFill: palette.grey[2],
   surfaceButtonSecondaryFillHover: palette.grey[1],
   surfaceButtonSecondaryText: palette.grey[6],
+
+  // Tab bar ("For_claude.fig" Tab-Bar frame, Tab Items: Active/Default/Hover).
+  textTab: palette.grey[6], // label, default
+  textTabCounter: palette.grey[5], // counter, default
+  surfaceTabHover: palette.grey[1], // hover fill
+  // Active/hover label + counter and the active underline follow the product
+  // accent (see accentThemes) — resolved via CSS var so a data-theme wrapper
+  // re-themes them without props.
+  textTabActive: 'var(--color-accent, #262626)',
+  borderTabActive: 'var(--color-accent, #262626)',
+
+  // Accent Button with no explicit `color` — follows the product accent too.
+  surfaceButtonAccent: 'var(--color-accent, #262626)',
+  surfaceButtonAccentHover: 'var(--color-accent-hover, #595959)',
 };
+
+// Product accent — base .5 shade of the product's palette; neutral (grey.7)
+// is the default. Used by tabs and accent buttons only; other
+// components keep their fixed colors. Switched per product with
+// data-theme="neutral" | "green" | "cryola" | "blue" | "amethyst" on <html> or
+// any wrapper; the matching CSS rules live in global.css (keep the two in sync).
+export const accentThemes = {
+  neutral: { accent: palette.grey[7], hover: palette.grey[6] },
+  green: { accent: palette.green[5], hover: palette.green[4] },
+  cryola: { accent: palette.cryola[5], hover: palette.cryola[4] },
+  blue: { accent: palette.blue[5], hover: palette.blue[4] },
+  amethyst: { accent: palette.amethyst[5], hover: palette.amethyst[4] },
+};
+export const ACCENT_THEME_NAMES = Object.keys(accentThemes);
 
 export const monoFontFamily = "'SF Mono', Menlo, monospace";
 export const uiFontFamily = 'Helvetica, Arial, sans-serif';

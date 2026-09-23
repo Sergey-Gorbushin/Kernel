@@ -1,7 +1,7 @@
 import React from 'react';
 import { DesignSystemSectionPage } from '../shared/DesignSystemSectionPage';
 import { Button, BUTTON_SIZE_NAMES, BUTTON_ACCENT_COLOR_NAMES } from './Button';
-import { colors, monoFontFamily } from '../../styles/tokens';
+import { ACCENT_THEME_NAMES, colors, monoFontFamily } from '../../styles/tokens';
 
 const SPECS = {
   sm: 'height 28 · font 12/20',
@@ -56,17 +56,33 @@ export const Variants = () => (
       <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
         <Button variant="neutral">Neutral</Button>
         <Button variant="secondary">Secondary</Button>
+        <Button variant="accent">Accent</Button>
         {BUTTON_ACCENT_COLOR_NAMES.map((c) => (
           <Button key={c} variant="accent" color={c}>{c}</Button>
         ))}
       </div>
       <div style={{ fontFamily: monoFontFamily, fontSize: 11, color: colors.textFaint }}>
-        Hover any button to see the hover fill.
+        Hover any button to see the hover fill. "Accent" has no color set, so it follows the product theme.
       </div>
     </div>
   </DesignSystemSectionPage>
 );
 Variants.parameters = { controls: { disable: true } };
+
+/** Accent buttons without an explicit `color` follow the product accent — the same data-theme switch as the tab bar. */
+export const ProductTheme = () => (
+  <DesignSystemSectionPage title="Кнопки">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start' }}>
+      {ACCENT_THEME_NAMES.map((theme) => (
+        <div key={theme} data-theme={theme} style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          <Button variant="accent">Accent</Button>
+          <div style={{ fontFamily: monoFontFamily, fontSize: 11, color: colors.textFaint }}>data-theme="{theme}"</div>
+        </div>
+      ))}
+    </div>
+  </DesignSystemSectionPage>
+);
+ProductTheme.parameters = { controls: { disable: true } };
 
 export const States = () => (
   <DesignSystemSectionPage title="Кнопки">

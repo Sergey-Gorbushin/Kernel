@@ -36,7 +36,11 @@ function variantColors(variant, color, hovered) {
     };
   }
   if (variant === 'accent') {
-    const ramp = palette[color] || palette.blue;
+    const ramp = palette[color];
+    if (!ramp) {
+      // No explicit palette — follow the product accent (data-theme).
+      return { fill: hovered ? colors.surfaceButtonAccentHover : colors.surfaceButtonAccent, text: colors.textOnDark };
+    }
     return { fill: hovered ? ramp[4] : ramp[5], text: colors.textOnDark };
   }
   return {
@@ -50,13 +54,18 @@ function variantColors(variant, color, hovered) {
  * the lucide "menu" glyph, standing in for the source Figma file's own
  * placeholder icon component.
  *
+ * `variant="accent"` fills with the palette's .5 shade (hover .4). Pass
+ * `color` to pin a palette; omit it to follow the product accent set by a
+ * `data-theme` wrapper (neutral by default — see accentThemes in tokens.js).
+ *
  * @example
- * <Button size="default" variant="accent" color="blue" showLeftIcon>Button Title</Button>
+ * <Button size="default" variant="accent" showLeftIcon>Button Title</Button>
+ * <Button variant="accent" color="blue">Always blue</Button>
  */
 export function Button({
   size = 'default',
   variant = 'neutral',
-  color = 'blue',
+  color,
   disabled = false,
   loading = false,
   showLeftIcon = false,
