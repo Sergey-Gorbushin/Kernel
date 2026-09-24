@@ -20,8 +20,6 @@ export const colors = {
   border: 'oklch(0.9 0.002 90)',
   borderFaint: 'oklch(0.93 0.002 90)',
   borderDashed: 'oklch(0.85 0.002 90)',
-  navActiveBg: 'oklch(0.94 0.003 90)',
-  navActiveText: 'oklch(0.18 0.005 90)',
   white: '#FFFFFF',
 
   // Form-control palette, introduced designing Input/Select/Textarea against
@@ -50,6 +48,7 @@ export const colors = {
   textOnDark: '#FFFFFF', // white — Button/active-pagination-page text over surfaceButtonFill
   surfaceSelected: '#1890FF', // focusBlueStrong alias — Checkbox/Radio checked fill+ring
   surfaceHover: '#F0F0F0', // Pagination page-button hover background
+  surfaceNotificationDark: 'rgb(63,69,75)', // Notification card fill, from Figma spec
 
   // Button variants/states (Color palettes + Button variants/states handoff).
   surfaceButtonFillHover: palette.grey[6],

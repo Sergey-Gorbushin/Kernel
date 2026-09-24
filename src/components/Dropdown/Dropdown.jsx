@@ -5,6 +5,7 @@ import { FONT_FAMILY } from '../../tokens/typography';
 import { shadows } from '../../tokens/elevation';
 import { Checkbox } from '../CheckboxRadio/Checkbox';
 import { Radio } from '../CheckboxRadio/Radio';
+import { CheckIcon } from '../shared/icons';
 
 const textStyle = (size, line, color) => ({ fontFamily: FONT_FAMILY, fontWeight: 400, fontSize: size, lineHeight: `${line}px`, color });
 
@@ -29,11 +30,12 @@ function Item({ item }) {
           )}
         </div>
       </div>
-      {(item.count != null || item.endIcon || item.checkbox != null || item.radio != null) && (
+      {(item.count != null || item.selected || item.endIcon || item.checkbox != null || item.radio != null) && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
           {item.count != null && <span style={textStyle(14, 22, colors.textPlaceholder)}>{item.count}</span>}
           {item.checkbox != null && <Checkbox size="md" checked={!!item.checkbox} disabled={disabled} style={{ pointerEvents: 'none' }} />}
           {item.radio != null && <Radio size="md" checked={!!item.radio} disabled={disabled} style={{ pointerEvents: 'none' }} />}
+          {item.selected && !item.checkbox && !item.radio && <span style={{ display: 'flex', width: 16, height: 16, color: colors.iconInput }}><CheckIcon size={16} /></span>}
           {item.endIcon && !item.checkbox && !item.radio && <span style={{ display: 'flex', width: 16, height: 16, color: colors.iconInput }}>{item.endIcon}</span>}
         </div>
       )}
@@ -50,8 +52,10 @@ function Item({ item }) {
  * custom scrollbar track was decorative and isn't reproduced — falls back to
  * the native scrollbar). Each item: optional 16px leading icon, label
  * (14/22, `colors.textBody`), optional caption line (12px, `colors.iconInput`
- * grey), optional trailing count (`colors.textPlaceholder`) and/or trailing
- * 16px icon/checkbox/radio. `items` also accepts `{ divider: true }` rows.
+ * grey), optional trailing count (`colors.textPlaceholder`), a `selected`
+ * checkmark, and/or a trailing 16px icon/checkbox/radio (`selected` is drawn
+ * before `endIcon`, and both are suppressed once a checkbox/radio is set).
+ * `items` also accepts `{ divider: true }` rows.
  * Closes on outside click, Escape, or item select (unless `closeOnSelect` is
  * false).
  *

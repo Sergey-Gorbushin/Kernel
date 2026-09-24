@@ -1,6 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { colors } from '../../styles/tokens';
+import { colors, palette } from '../../styles/tokens';
 import { FONT_FAMILY } from '../../tokens/typography';
 import { controlSizes } from '../../tokens/sizing';
 import { SearchIcon, ClearIcon, ChevronDownIcon, CheckIcon } from '../shared/icons';
@@ -144,7 +144,7 @@ export function Select({
         display: 'inline-flex',
         alignItems: 'center',
         gap: 4,
-        background: colors.navActiveBg,
+        background: palette.grey[2],
         borderRadius: 4,
         padding: '2px 6px',
         fontFamily: FONT_FAMILY,
@@ -240,9 +240,9 @@ export function Select({
           <div
             key={opt.value}
             onClick={() => handleSelect(opt)}
-            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 8px', borderRadius: 4, cursor: 'pointer', background: isSelected && !multiple ? colors.navActiveBg : 'transparent' }}
-            onMouseEnter={(e) => { if (!(isSelected && !multiple)) e.currentTarget.style.background = colors.pageBg; }}
-            onMouseLeave={(e) => { if (!(isSelected && !multiple)) e.currentTarget.style.background = 'transparent'; }}
+            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 8px', borderRadius: 4, cursor: 'pointer', background: 'transparent' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = colors.pageBg; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
           >
             {multiple && (
               <span
