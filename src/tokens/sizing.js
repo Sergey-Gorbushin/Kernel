@@ -23,3 +23,18 @@ export const textareaSizes = {
 };
 
 export const CONTROL_SIZE_NAMES = ['sm', 'md', 'default', 'lg', 'xl'];
+
+// Tooltip — ported from the "For_claude.fig" /Tooltip frame. The frame had
+// no explicit height/padding spec beyond its 12/20 body text and the arrow
+// SVG's own 11x5.04 geometry, so height/padding/offset are inferred to fit
+// that text at a comfortable density (flagged as an assumption, same as
+// textareaSizes above).
+export const tooltipSizing = {
+  height: 28,
+  radius: 6,
+  paddingY: 4,
+  paddingX: 8,
+  arrowLength: 11,
+  arrowDepth: 5,
+  offset: 4,
+};
