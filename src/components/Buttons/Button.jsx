@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { colors, palette } from '../../styles/tokens';
 import { FONT_FAMILY } from '../../tokens/typography';
+import { shadows } from '../../tokens/elevation';
 
 // Ported from the "For_claude.fig" Buttons page (Primary Buttons V2 component
 // set). Heights/radii match the shared control sizes (Input/Select), but
@@ -16,7 +17,7 @@ const BUTTON_SIZES = {
 };
 
 export const BUTTON_SIZE_NAMES = ['sm', 'md', 'default', 'lg', 'xl'];
-export const BUTTON_VARIANT_NAMES = ['neutral', 'secondary', 'accent'];
+export const BUTTON_VARIANT_NAMES = ['neutral', 'secondary', 'accent', 'outline'];
 export const BUTTON_ACCENT_COLOR_NAMES = ['blue', 'cryola', 'green', 'amethyst'];
 
 const SPIN_KEYFRAMES_ID = 'kernel-button-spin-keyframes';
@@ -29,6 +30,14 @@ function ensureSpinKeyframes() {
 }
 
 function variantColors(variant, color, hovered) {
+  if (variant === 'outline') {
+    return {
+      fill: hovered ? palette.grey[0] : colors.white,
+      text: palette.grey[6],
+      border: `1px solid ${palette.grey[3]}`,
+      boxShadow: shadows.buttonOutline,
+    };
+  }
   if (variant === 'secondary') {
     return {
       fill: hovered ? colors.surfaceButtonSecondaryFillHover : colors.surfaceButtonSecondaryFill,
@@ -57,6 +66,8 @@ function variantColors(variant, color, hovered) {
  * `variant="accent"` fills with the palette's .5 shade (hover .4). Pass
  * `color` to pin a palette; omit it to follow the product accent set by a
  * `data-theme` wrapper (neutral by default — see accentThemes in tokens.js).
+ * `variant="outline"` is a1 fill with a 1px grey.3 border and a soft shadow,
+ * hover grey.0, grey.6 text/icons — per the user's reference screenshot.
  *
  * @example
  * <Button size="default" variant="accent" showLeftIcon>Button Title</Button>
@@ -80,7 +91,7 @@ export function Button({
   const s = BUTTON_SIZES[size] || BUTTON_SIZES.default;
   const [hovered, setHovered] = useState(false);
   if (loading) ensureSpinKeyframes();
-  const { fill, text } = variantColors(variant, color, hovered);
+  const { fill, text, border, boxShadow } = variantColors(variant, color, hovered);
 
   return (
     <button
@@ -94,7 +105,6 @@ export function Button({
         width: 'fit-content',
         height: s.height,
         minWidth: s.minWidth,
-        overflow: 'hidden',
         borderRadius: s.radius,
         backgroundColor: fill,
         display: 'flex',
@@ -105,7 +115,8 @@ export function Button({
         alignItems: 'center',
         flexWrap: 'nowrap',
         boxSizing: 'border-box',
-        border: 'none',
+        border: border || 'none',
+        boxShadow: boxShadow || 'none',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.4 : 1,
         pointerEvents: disabled || loading ? 'none' : 'auto',
