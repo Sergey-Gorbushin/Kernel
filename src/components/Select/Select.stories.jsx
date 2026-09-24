@@ -2,7 +2,7 @@ import React from 'react';
 import { DesignSystemSectionPage } from '../shared/DesignSystemSectionPage';
 import { Select } from './Select';
 import { CONTROL_SIZE_NAMES } from '../../tokens/sizing';
-import { colors, monoFontFamily } from '../../styles/tokens';
+import { colors, palette, monoFontFamily } from '../../styles/tokens';
 
 const FRUITS = ['Apple', 'Banana', 'Cherry', 'Durian', 'Fig', 'Guava', 'Persimmon', 'Blueberry'];
 
@@ -76,7 +76,7 @@ export const OverlapStressTest = () => (
           left: 40,
           width: 200,
           height: 120,
-          background: colors.navActiveBg,
+          background: palette.grey[2],
           border: `1px solid ${colors.border}`,
           borderRadius: 8,
           zIndex: 5,

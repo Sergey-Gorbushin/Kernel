@@ -10,7 +10,10 @@ import { SearchIcon, ClearIcon, EyeIcon } from '../shared/icons';
  * sm = 12px, all other sizes = 16px, defaults to a search glyph). Optional
  * trailing text suffix. `clearable` (default true) shows a trailing clear
  * (×) button once the field has text. `type="password"` automatically adds
- * a show/hide toggle. `error` and `disabled` states supported.
+ * a show/hide toggle. `autoComplete` defaults to `off` (`new-password` for
+ * `type="password"`, suppressing the browser's password-manager autofill);
+ * pass an explicit value via props to override it. `error` and `disabled`
+ * states supported.
  *
  * @example
  * <Input label="Search" showIcon caption="Optional hint" />
@@ -88,6 +91,7 @@ export function Input({
         </span>
       )}
       <input
+        autoComplete={isPassword ? 'new-password' : 'off'}
         {...rest}
         ref={inputRef}
         type={isPassword ? (revealed ? 'text' : 'password') : type}
