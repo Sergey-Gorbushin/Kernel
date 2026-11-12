@@ -56,7 +56,7 @@ export const Variants = () => (
       <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
         <Button variant="neutral">Neutral</Button>
         <Button variant="secondary">Secondary</Button>
-        <Button variant="outline">Outline</Button>
+        <Button variant="tertiary">Tertiary</Button>
         <Button variant="accent">Accent</Button>
         {BUTTON_ACCENT_COLOR_NAMES.map((c) => (
           <Button key={c} variant="accent" color={c}>{c}</Button>

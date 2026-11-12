@@ -33,7 +33,7 @@ function Ramp({ name, steps }) {
   );
 }
 
-/** Five 10-step color ramps — Grey, Blue, Cryola, Green, Amethyst — 0 (lightest) to 9 (darkest), .5 is the base/reference shade. */
+/** Six 10-step color ramps — Grey, Blue, Cryola, Green, Amethyst, Dust Red — 0 (lightest) to 9 (darkest), .5 is the base/reference shade. */
 export const Palettes = () => (
   <DesignSystemSectionPage title="Цветовые палитры">
     <div style={{ display: 'flex', gap: 0, height: 600 }}>
@@ -42,6 +42,7 @@ export const Palettes = () => (
       <Ramp name="Cryola" steps={palette.cryola} />
       <Ramp name="Green" steps={palette.green} />
       <Ramp name="Amethyst" steps={palette.amethyst} />
+      <Ramp name="DustRed" steps={palette.dustred} />
     </div>
   </DesignSystemSectionPage>
 );
