@@ -1,4 +1,4 @@
-// Five 10-step color ramps (0 lightest … 9 darkest, .5 is the base/reference
+// Six 10-step color ramps (0 lightest … 9 darkest, .5 is the base/reference
 // shade). Source: design handoff "Color palettes + Button variants/states".
 export const palette = {
   grey: ['#FAFAFA', '#F6F6F6', '#F0F0F0', '#D9D9D9', '#BFBFBF', '#8C8C8C', '#595959', '#262626', '#141414', '#161616'],
@@ -6,6 +6,7 @@ export const palette = {
   cryola: ['#FFF7F5', '#FFE8E1', '#FED1C3', '#FDB29B', '#FD8F6D', '#FC6C40', '#F63D04', '#D33403', '#B02B03', '#9C2602'],
   green: ['#EBFCF4', '#DAF0E6', '#B6E3CE', '#84BFA3', '#6AA389', '#3E785D', '#33624D', '#2B4F3E', '#223C30', '#1A2922'],
   amethyst: ['#EFE4FC', '#DEC9F8', '#CDAEF4', '#BB94F0', '#A87AEB', '#9460E6', '#754DB3', '#583B83', '#3B2956', '#21182D'],
+  dustred: ['#FFF1F0', '#FFCCC7', '#FFA39E', '#FF7875', '#FF4D4F', '#F5222D', '#CF1322', '#A8071A', '#820014', '#5C0011'],
 };
 
 export const ACCENT_COLOR_NAMES = ['blue', 'cryola', 'green', 'amethyst'];
@@ -13,8 +14,8 @@ export const ACCENT_COLOR_NAMES = ['blue', 'cryola', 'green', 'amethyst'];
 // Neutral / minimalist color tokens from the mockup (Storybook.dc.html).
 export const colors = {
   pageBg: 'oklch(0.98 0.002 90)',
-  textPrimary: 'oklch(0.22 0.005 90)',
-  textStrong: 'oklch(0.15 0.005 90)',
+  textPrimary: palette.grey[7], // black text is always grey.7
+  textStrong: palette.grey[7], // black text is always grey.7
   textMuted: 'oklch(0.4 0.005 90)',
   textFaint: 'oklch(0.55 0.005 90)',
   border: 'oklch(0.9 0.002 90)',

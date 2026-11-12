@@ -32,7 +32,7 @@ export const OnHover = (args) => (
     <div style={{ display: 'flex', gap: 48, alignItems: 'center', padding: 60 }}>
       {TOOLTIP_ARROW_NAMES.map((arrow) => (
         <Tooltip key={arrow} label={args.label} arrow={arrow}>
-          <Button size="sm" variant="outline">{arrow}</Button>
+          <Button size="sm" variant="tertiary">{arrow}</Button>
         </Tooltip>
       ))}
     </div>

@@ -17,7 +17,7 @@ const BUTTON_SIZES = {
 };
 
 export const BUTTON_SIZE_NAMES = ['sm', 'md', 'default', 'lg', 'xl'];
-export const BUTTON_VARIANT_NAMES = ['neutral', 'secondary', 'accent', 'outline'];
+export const BUTTON_VARIANT_NAMES = ['neutral', 'secondary', 'accent', 'tertiary'];
 export const BUTTON_ACCENT_COLOR_NAMES = ['blue', 'cryola', 'green', 'amethyst'];
 
 const SPIN_KEYFRAMES_ID = 'kernel-button-spin-keyframes';
@@ -30,7 +30,7 @@ function ensureSpinKeyframes() {
 }
 
 function variantColors(variant, color, hovered) {
-  if (variant === 'outline') {
+  if (variant === 'tertiary') {
     return {
       fill: hovered ? palette.grey[0] : colors.white,
       text: palette.grey[6],
@@ -66,7 +66,7 @@ function variantColors(variant, color, hovered) {
  * `variant="accent"` fills with the palette's .5 shade (hover .4). Pass
  * `color` to pin a palette; omit it to follow the product accent set by a
  * `data-theme` wrapper (neutral by default — see accentThemes in tokens.js).
- * `variant="outline"` is a1 fill with a 1px grey.3 border and a soft shadow,
+ * `variant="tertiary"` is a1 fill with a 1px grey.3 border and a soft shadow,
  * hover grey.0, grey.6 text/icons — per the user's reference screenshot.
  *
  * @example
